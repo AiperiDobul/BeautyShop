@@ -10,7 +10,21 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=100, primary_key=True)
+    categories = models.ManyToManyField(Category)
+
+    def __str__(self) -> str:
+        return self.name
+
+    def __repr__(self) -> str:
+        return self.name
+
+
+
+
 
 class Product(models.Model):
     CHOICES = (
@@ -18,7 +32,7 @@ class Product(models.Model):
         ('out of stock', 'Нет в наличии'),
     )
     name = models.CharField(max_length=100)
-    description = models.TextChoices()
+    description = models.TextField()
     image = models.ImageField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     availability = models.CharField(choices=CHOICES, max_length=20)
