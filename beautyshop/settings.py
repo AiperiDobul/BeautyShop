@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'beautyshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DATABASE_NAME'),
+        'ENGINE': config('ENGINE'),
         'NAME': config('DATABASE_NAME'),
         'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
