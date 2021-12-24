@@ -33,13 +33,13 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='products', null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     availability = models.CharField(choices=CHOICES, max_length=20)
-    brand_name = models.CharField(max_length=100)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
-        return f"{self.name} от бренда /\"{self.brand_name}/\""
+        return f"{self.name} от бренда \"{self.brand.name}\""
 
 class ProductReview(models.Model):
     text = models.TextField()
@@ -51,5 +51,3 @@ class ProductReview(models.Model):
 
     def __str__(self) -> str:
         return f"Комментарий юзера {self.user.email}"
-
-
