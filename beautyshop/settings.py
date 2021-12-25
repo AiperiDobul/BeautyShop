@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'phonenumber_field',
+
     #my apps:
     'account',
     'product',
@@ -134,6 +136,11 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# регистрация переопределенной модели User:
+AUTH_USER_MODEL = 'account.User'
 MEDIAFILES_DIRS = (
     os.path.join(BASE_DIR, 'media'),
 )
+

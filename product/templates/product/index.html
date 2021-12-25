@@ -1,4 +1,32 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+          <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" style="height: 300px; width: 300px" class="card-img-top" alt="...">
+            {% else %}
+                <img src="..." class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+              <h4 class="card-title">{{ product.brand.name }}</h4>
+              <p class="card-text">{{ product.name }}</p>
+              <p>{{ product.price }} сом</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+=======
 {% load static %}
 <html>
 <title>W3.CSS Template</title>
@@ -391,6 +419,5 @@ function w3_close() {
     mySidebar.style.display = "none";
 }
 </script>
-
 </body>
 </html>
