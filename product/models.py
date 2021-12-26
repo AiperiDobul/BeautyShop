@@ -35,6 +35,7 @@ class Product(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='products', null=True, blank=True)
     price = price = models.FloatField()
+    size = models.PositiveSmallIntegerField()
     availability = models.CharField(choices=CHOICES, max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
 
