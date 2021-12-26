@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(primary_key=True)
+    password = models.CharField(max_length=128)
     name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70, default='default last name')
     phone_number = PhoneNumberField(unique=True, null=False, blank=False, region='KG')
