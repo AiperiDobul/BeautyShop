@@ -142,3 +142,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # регистрация переопределенной модели User:
 AUTH_USER_MODEL = 'account.User'
+
+CART_SESSION_ID = 'cart'
