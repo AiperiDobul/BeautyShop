@@ -15,19 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import path
-from django.urls import include
-from product.views import indexView
 from django.conf import settings
 from django.conf.urls.static import static
-from product.views import indexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('products/', include('product.urls')),
     path('cart/', include('order.urls')),
-    path('', indexView, name="index"),
 ]
 
 if settings.DEBUG:
