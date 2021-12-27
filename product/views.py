@@ -3,6 +3,7 @@ from .models import *
 from django.views.generic.detail import DetailView
 from order.forms import AddToCartForm
 
+
 def indexView(request):
     products = Product.objects.all()
     return render(request, 'product/index.html', {'products': products})

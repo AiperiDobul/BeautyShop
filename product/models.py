@@ -1,8 +1,8 @@
 from django.db import models
-from django.db.models.fields import CharField
-from django.db.models.fields.files import ImageField
+
 
 from account.models import User
+
 
 class Category(models.Model):
     slug = models.SlugField(primary_key=True)
@@ -23,9 +23,6 @@ class Brand(models.Model):
         return self.name
 
 
-
-
-
 class Product(models.Model):
     CHOICES = (
         ('in stock', 'В наличии'),
@@ -34,13 +31,14 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='products', null=True, blank=True)
-    price = price = models.FloatField()
+    price = models.FloatField()
     size = models.PositiveSmallIntegerField()
     availability = models.CharField(choices=CHOICES, max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
         return f"{self.name} от бренда \"{self.brand.name}\""
+
 
 class ProductReview(models.Model):
     text = models.TextField()
