@@ -6,6 +6,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('register/success/', SuccessfulRegistration.as_view(), name='register-success'),
     path('activate/<str:code>/', ActivationView.as_view(), name='activate'),
-    path('login/', SignInView.as_view(), name='sign-in'),
+    path('sign_in/', SignInView.as_view(), name='sign-in'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
