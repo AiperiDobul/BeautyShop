@@ -61,12 +61,12 @@ class User(AbstractBaseUser):
 
     def send_activation_mail(self, action):
         if action.lower() == 'register':
-            message = f'http://localhost:8000/account/activate/{self.activation_code}/'
+            message = f'Перйдите по этой ссылке для активации вашего аккаунта:\nhttp://localhost:8000/account/activate/{self.activation_code}/'
         else:
             message = f'Ваш код подтверждения: {self.activation_code}'
 
         send_mail(
-            'Активация аккаунта',
+            'Активация аккаунта на BeautyShop',
             message,
             'test@gmail.com',
             [self.email]
