@@ -2,10 +2,13 @@ from django.shortcuts import render
 from .models import *
 from django.views.generic.detail import DetailView
 from order.forms import AddToCartForm
+from django.views.generic import ListView
 
-def indexView(request):
-    products = Product.objects.all()
-    return render(request, 'product/index.html', {'products': products})
+class IndexView(ListView):
+    queryset = Product.objects.all()
+    template_name = 'product/index.html'
+    context_object_name = 'products'
+    paginate_by = 15
 
 
 class ProductDetailsView(DetailView):
