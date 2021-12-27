@@ -38,7 +38,7 @@ class User(AbstractBaseUser):
     phone_number = PhoneNumberField(unique=True, null=False, blank=False, region='KG')
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    activation_code = models.CharField(max_length=8, blank=True)
+    activation_code = models.CharField(max_length=14, blank=True)
 
     objects = UserManager()
 
@@ -61,13 +61,13 @@ class User(AbstractBaseUser):
 
     def send_activation_mail(self, action):
         if action.lower() == 'register':
-            message = f'http://localhost:8000/account/activate/{self.activation_code}/'
+            message = f'Перйдите по этой ссылке для активации вашего аккаунта:\nhttp://localhost:8000/account/activate/{self.activation_code}/'
         else:
             message = f'Ваш код подтверждения: {self.activation_code}'
 
         send_mail(
-                'Активация аккаунта',
-                message,
-                'test@gmail.com',
-                [self.email]
+            'Активация аккаунта на BeautyShop',
+            message,
+            'test@gmail.com',
+            [self.email]
         )
