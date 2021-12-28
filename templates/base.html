@@ -20,9 +20,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" action="{% url 'search' %}">
+            <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
     </div>
   </nav>
