@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 from .models import *
 from django.views.generic.detail import DetailView
 from order.forms import AddToCartForm
@@ -21,3 +21,5 @@ class ProductDetailsView(DetailView):
         context = super().get_context_data()
         context['cart_form'] = AddToCartForm()
         return context
+
+
