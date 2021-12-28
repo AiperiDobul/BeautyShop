@@ -71,3 +71,7 @@ class User(AbstractBaseUser):
             'test@gmail.com',
             [self.email]
         )
+
+    @property
+    def id(self):
+        return self.email
