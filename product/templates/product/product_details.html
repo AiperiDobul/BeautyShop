@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Details {% endblock %}
 {% load static %}
 <html lang="en">
 <head>
@@ -19,6 +20,8 @@
           {% endif %}
           <a href="{% url 'cart_detail' %}">Корзина</a>
     </div>
+
+{% block content %}
     <div class="d-flex justify-content-center container mt-5">
         <div class="card p-3 bg-white"><i class="fa fa-apple"></i>
             <div class="about-product text-center mt-2">
@@ -30,6 +33,7 @@
                 <div>
                     <h4>{{ product.brand }}</h4>
                     <h6 class="mt-0 text-black-50">{{ product.name }}</h6>
+                    <p class="product-description">{{ product.description }}</p>
                 </div>
             </div>
             <div class="stats mt-2">
@@ -51,5 +55,4 @@
             <a href="{% url 'item_decrement' product.id %}">Decrement</a>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
