@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 
@@ -36,6 +38,10 @@ class Product(models.Model):
     availability = models.CharField(choices=CHOICES, max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('detail', kwargs={'product_id': self.pk})
+
     def __str__(self):
         return f"{self.name} от бренда \"{self.brand.name}\""
 
@@ -43,10 +49,19 @@ class Product(models.Model):
 class ProductReview(models.Model):
     text = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveSmallIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return f"Комментарий юзера {self.user.email}"
+
+
+class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+    comments = GenericRelation(ProductReview)
