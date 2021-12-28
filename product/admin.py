@@ -3,9 +3,9 @@ from .models import *
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'product', 'created', 'active')
+    list_display = ('user', 'product', 'created', 'active')
     list_filter = ('active', 'created')
-    search_fields = ('author', 'text')
+    search_fields = ('user', 'text')
 
 
 admin.site.register(Category)

@@ -5,30 +5,11 @@
 {% block content %}
   <img style="width: 100%; height: 100%;" src="{% static 'img/Beauty-Store-Of-The-Future-1.jpg' %}" class="img-fluid" alt="...">
 
-<!--<<<<<<< HEAD-->
-<!--    <div style="margin-top: 30px; margin-bottom: 30px;" class="row row-cols-1 row-cols-md-3 g-4">-->
-
-<!--        {% for product in products %}-->
-<!--            <div class="col">-->
-<!--          <div class="card">-->
-<!--           <a href="{% url 'product-details' product.id %}">-->
-<!--              {% if product.image %}-->
-<!--                <img src="{{ product.image.url }}" style="height: 300px; width: 300px" class="card-img-top" alt="...">-->
-<!--            {% else %}-->
-<!--                <img src="{% static 'img/no_product_image.svg' %}" class="card-img-top" style="height: 300px; width: 300px" alt="...">-->
-<!--            {% endif %}-->
-<!--           </a>-->
-<!--              <div class="card-body">-->
-<!--                  <h4 class="card-title">{{ product.brand.name }}</h4>-->
-<!--              <p class="card-text">{{ product.name }}</p>-->
-<!--              <p>{{ product.price }} сом</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--=======-->
   <div class="row row-cols-1 row-cols-md-3 g-4">
   {% for product in products %}
     <div class="col">
       <div class="card">
+       <a href="{% url 'product-details' product.id %}">
       {% if product.image %}
       <div class="d-flex justify-content-center">
         <img src="{{ product.image.url }}" style="height: 300px; width: 300px" class="card-img-top" alt="...">
@@ -36,9 +17,9 @@
         {% else %}
         <div class="d-flex justify-content-center">
           <img src="{% static 'img/no_product_image.svg' %}" class="card-img-top" style="height: 300px; width: 300px" alt="...">
-<!--&gt;>>>>>> origin/cart-->
         </div>
         {% endif %}
+       </a>
         <div class="card-body">
           <h4 class="card-title">{{ product.brand.name }}</h4>
           <p class="card-text">{{ product.name }}</p>

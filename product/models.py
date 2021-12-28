@@ -37,10 +37,6 @@ class Product(models.Model):
     availability = models.CharField(choices=CHOICES, max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
 
-    def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('detail', kwargs={'product_id': self.pk})
-
     def __str__(self):
         return f"{self.name} от бренда \"{self.brand.name}\""
 
@@ -48,15 +44,14 @@ class Product(models.Model):
 class ProductReview(models.Model):
     text = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-    # content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    # object_id = models.PositiveSmallIntegerField()
-    # content_object = GenericForeignKey('content_type', 'object_id')
-    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users', default='aiperi')
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('created',)
 
     def __str__(self) -> str:
-        return f"Review by {self.author} on {self.product}"
+        return f"Review by {self.user.name} on {self.product}"
+
